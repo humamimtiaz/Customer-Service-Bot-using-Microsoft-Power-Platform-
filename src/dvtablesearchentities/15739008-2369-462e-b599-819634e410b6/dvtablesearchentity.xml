@@ -1,0 +1,10 @@
+<dvtablesearchentity dvtablesearchentityid="15739008-2369-462e-b599-819634e410b6">
+  <dvtablesearch>
+    <dvtablesearchid>58389d85-df43-48a6-a383-9214feebde51</dvtablesearchid>
+  </dvtablesearch>
+  <entitylogicalname>cr24b_customerfeedback</entitylogicalname>
+  <iscustomizable>0</iscustomizable>
+  <name>cr24b_CustomerFeedback</name>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</dvtablesearchentity>

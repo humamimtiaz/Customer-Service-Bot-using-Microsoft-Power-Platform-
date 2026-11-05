@@ -1,0 +1,170 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_f82fc"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_827d4"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "cdf56c9a-8c0d-4f50-98bc-b0012b76b081"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "cr24b_tickets",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "cr24b_status"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1f60932d-f3e6-479b-878d-6daba28dfb1a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerOutputs()?['body/cr24b_email']",
+              "emailMessage/Subject": "Ticket ID: @{triggerOutputs()?['body/cr24b_ticketid']} status has been changed ",
+              "emailMessage/Body": "<p>For Ticket ID: @{triggerOutputs()?['body/cr24b_ticketid']} status has been changed to&nbsp;@{variables('Status Value')}</p>",
+              "emailMessage/Importance": "High"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": 1,
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "24f427c9-dbae-4c90-b5ad-fc4802a91659"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Status Value",
+                    "value": "Open"
+                  }
+                }
+              }
+            },
+            "Case_2": {
+              "case": 2,
+              "actions": {
+                "Set_variable_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f9c4135b-d28b-4827-b14d-97f2bc1b3b4b"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Status Value",
+                    "value": "In Progress"
+                  }
+                }
+              }
+            },
+            "Case_3": {
+              "case": 3,
+              "actions": {
+                "Set_variable_3": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2fb4f2e6-fa77-4dd7-bebb-c33a638e2b94"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Status Value",
+                    "value": "Resolved"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerOutputs()?['body/cr24b_status']",
+          "metadata": {
+            "operationMetadataId": "913e0c25-f3d2-45c5-9a06-e76a209286c1"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "ff629a43-570d-471e-8038-bc7d73f7b0fb"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Status Value",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

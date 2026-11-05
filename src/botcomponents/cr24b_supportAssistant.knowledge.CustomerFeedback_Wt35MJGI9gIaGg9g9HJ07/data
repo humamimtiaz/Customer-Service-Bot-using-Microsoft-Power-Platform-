@@ -1,0 +1,4 @@
+kind: KnowledgeSourceConfiguration
+source:
+  kind: DataverseStructuredSearchSource
+  skillConfiguration: CustomerFeedback_SxNw4YV_6TqYqv5Kb6Mrg

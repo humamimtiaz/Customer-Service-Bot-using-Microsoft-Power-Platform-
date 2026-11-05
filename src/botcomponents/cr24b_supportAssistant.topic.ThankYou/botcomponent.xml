@@ -1,0 +1,9 @@
+<botcomponent schemaname="cr24b_supportAssistant.topic.ThankYou">
+  <componenttype>9</componenttype>
+  <description>This topic triggers when the user says thank you.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Thank you</name>
+  <parentbotid>
+    <schemaname>cr24b_supportAssistant</schemaname>
+  </parentbotid>
+</botcomponent>

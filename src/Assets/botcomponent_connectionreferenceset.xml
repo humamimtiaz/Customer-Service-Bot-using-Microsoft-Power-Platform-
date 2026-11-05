@@ -1,0 +1,5 @@
+<botcomponent_connectionreferenceset>
+  <botcomponent_connectionreference botcomponentid.schemaname="cr24b_supportAssistant.component.Mail-SendanemailnotificationV3" connectionreferenceid.connectionreferencelogicalname="cr24b_supportAssistant.shared_sendmail.shared-sendmail-a2eb1ced-660d-4f26-853e-93c8dc6fb0f5">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_connectionreference>
+</botcomponent_connectionreferenceset>

@@ -1,0 +1,9 @@
+<botcomponent schemaname="cr24b_supportAssistant.knowledge.CustomerFeedback_Wt35MJGI9gIaGg9g9HJ07">
+  <componenttype>16</componenttype>
+  <description>This knowledge source answers questions found in the following Dataverse tables: Customer Feedback</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Customer Feedback</name>
+  <parentbotid>
+    <schemaname>cr24b_supportAssistant</schemaname>
+  </parentbotid>
+</botcomponent>

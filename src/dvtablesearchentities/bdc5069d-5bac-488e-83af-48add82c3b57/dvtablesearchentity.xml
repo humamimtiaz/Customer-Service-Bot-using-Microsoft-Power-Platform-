@@ -1,0 +1,10 @@
+<dvtablesearchentity dvtablesearchentityid="bdc5069d-5bac-488e-83af-48add82c3b57">
+  <dvtablesearch>
+    <dvtablesearchid>cca98719-1b7b-4585-9d50-11f5fa024ef3</dvtablesearchid>
+  </dvtablesearch>
+  <entitylogicalname>cr24b_tickets</entitylogicalname>
+  <iscustomizable>0</iscustomizable>
+  <name>cr24b_Tickets</name>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</dvtablesearchentity>

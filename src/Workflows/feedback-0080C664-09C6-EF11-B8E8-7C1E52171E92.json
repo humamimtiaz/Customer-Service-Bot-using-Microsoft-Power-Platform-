@@ -1,0 +1,120 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_microsoftforms": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedmicrosoftforms_8bb99"
+        },
+        "api": {
+          "name": "shared_microsoftforms"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_827d4"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_new_response_is_submitted": {
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "34f67933-5463-470f-983c-b997a962619b"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+              "connectionName": "shared_microsoftforms",
+              "operationId": "CreateFormWebhook"
+            },
+            "parameters": {
+              "form_id": "NPjPrCF1NU6WyMe4_hvrUJt9GYAbB8tIlshkPnOhplhUNjkxMFFFMDYwRTEwM0pIUDRNRUhVM01LNS4u"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_response_details": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0d5fadc4-b27a-47a1-9e7d-d7140f3045f7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+              "connectionName": "shared_microsoftforms",
+              "operationId": "GetFormResponseById"
+            },
+            "parameters": {
+              "form_id": "NPjPrCF1NU6WyMe4_hvrUJt9GYAbB8tIlshkPnOhplhUNjkxMFFFMDYwRTEwM0pIUDRNRUhVM01LNS4u",
+              "response_id": "@triggerOutputs()?['body/resourceData/responseId']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Compose": {
+          "runAfter": {
+            "Get_response_details": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7bf32732-b63c-4115-b1c2-72f3f920ed14"
+          },
+          "type": "Compose",
+          "inputs": "@outputs('Get_response_details')?['body/r4dd62bafd6ae4e46ba81a122d6aea086']"
+        },
+        "Add_a_new_row": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd2bd9da-7eee-49d9-93ab-041bffcf405e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord"
+            },
+            "parameters": {
+              "entityName": "cr24b_ticketsfeedbacks",
+              "item/cr24b_name": "@outputs('Get_response_details')?['body/ra9ceb9b6dc8d42ac90dadae184546dc1']",
+              "item/cr24b_feedbackid": "@outputs('Get_response_details')?['body/rf402eb3c1e4f499fb712beb1805c9f0f']",
+              "item/cr24b_rating": "@outputs('Compose')",
+              "item/cr24b_ticketid": "@outputs('Get_response_details')?['body/rf402eb3c1e4f499fb712beb1805c9f0f']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

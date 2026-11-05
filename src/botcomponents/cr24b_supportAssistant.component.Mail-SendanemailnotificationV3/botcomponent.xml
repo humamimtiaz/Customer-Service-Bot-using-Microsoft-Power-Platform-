@@ -1,0 +1,8 @@
+<botcomponent schemaname="cr24b_supportAssistant.component.Mail-SendanemailnotificationV3">
+  <componenttype>9</componenttype>
+  <iscustomizable>0</iscustomizable>
+  <name>Mail - Send an email notification (V3)</name>
+  <parentbotid>
+    <schemaname>cr24b_supportAssistant</schemaname>
+  </parentbotid>
+</botcomponent>

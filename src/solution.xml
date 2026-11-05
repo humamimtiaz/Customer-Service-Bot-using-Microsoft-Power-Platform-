@@ -1,0 +1,122 @@
+<ImportExportXml version="9.2.24112.220" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.24112.220" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.24112.00220">
+  <SolutionManifest>
+    <UniqueName>TicketRegistrationSolution</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="Ticket Registration Solution " languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.2</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>DefaultPublisherorgf03385fd</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="Default Publisher for orgf03385fd" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description description="Default publisher for this organization" languagecode="1033" />
+      </Descriptions>
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>new</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>10000</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="1" schemaName="cr24b_assignedagentssetup" behavior="0" />
+      <RootComponent type="1" schemaName="cr24b_customerfeedback" behavior="0" />
+      <RootComponent type="1" schemaName="cr24b_table1" behavior="0" />
+      <RootComponent type="1" schemaName="cr24b_tickets" behavior="0" />
+      <RootComponent type="1" schemaName="cr24b_ticketsfeedback" behavior="0" />
+      <RootComponent type="29" id="{0080c664-09c6-ef11-b8e8-7c1e52171e92}" behavior="0" />
+      <RootComponent type="29" id="{0180c664-09c6-ef11-b8e8-7c1e52171e92}" behavior="0" />
+      <RootComponent type="29" id="{0280c664-09c6-ef11-b8e8-7c1e52171e92}" behavior="0" />
+      <RootComponent type="29" id="{6380c664-09c6-ef11-b8e8-7c1e52171e92}" behavior="0" />
+      <RootComponent type="29" id="{6480c664-09c6-ef11-b8e8-7c1e52171e92}" behavior="0" />
+      <RootComponent type="29" id="{ff7fc664-09c6-ef11-b8e8-7c1e52171e92}" behavior="0" />
+      <RootComponent type="80" schemaName="cr24b_CustomerServiceDashboard" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="60" displayName="Ticket Status" solution="Active" id="{2e2eae7c-ffc5-ef11-b8e8-7c1e52171e92}" />
+        <Dependent type="80" schemaName="cr24b_CustomerServiceDashboard" displayName="Customer Service Dashboard" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="60" displayName="Ratings" solution="Active" id="{78f59483-01c6-ef11-b8e8-7c1e52171e92}" />
+        <Dependent type="80" schemaName="cr24b_CustomerServiceDashboard" displayName="Customer Service Dashboard" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)">
+          <package>AppModuleWebResources (2.5)</package>
+        </Required>
+        <Dependent type="80" schemaName="cr24b_CustomerServiceDashboard" displayName="Customer Service Dashboard" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="62" schemaName="cr24b_CustomerServiceDashboard" solution="Active" />
+        <Dependent type="80" schemaName="cr24b_CustomerServiceDashboard" displayName="Customer Service Dashboard" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.12)" id.uniquename="AppChannel">
+          <package>PowerAppsAppFramework_Anchor (1.0.0.16)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=cr24b_CustomerServiceDashboard,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="cr24b_CustomerServiceDashboard" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

@@ -1,0 +1,250 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_microsoftforms": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedmicrosoftforms_8bb99"
+        },
+        "api": {
+          "name": "shared_microsoftforms"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_827d4"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_f82fc"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_new_response_is_submitted": {
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "6de7e0f3-e873-46e5-9585-dfa6d9de1684"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+              "connectionName": "shared_microsoftforms",
+              "operationId": "CreateFormWebhook"
+            },
+            "parameters": {
+              "form_id": "NPjPrCF1NU6WyMe4_hvrUJt9GYAbB8tIlshkPnOhplhUNk4zMFRPUE9HRzVRVElESTdaUExGOTdFUS4u"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_response_details": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "bc35a3bb-a01d-44c9-8e75-0e3aa00c99d4"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+              "connectionName": "shared_microsoftforms",
+              "operationId": "GetFormResponseById"
+            },
+            "parameters": {
+              "form_id": "NPjPrCF1NU6WyMe4_hvrUJt9GYAbB8tIlshkPnOhplhUNk4zMFRPUE9HRzVRVElESTdaUExGOTdFUS4u",
+              "response_id": "@triggerOutputs()?['body/resourceData/responseId']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Add_a_new_row": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "79945195-3ed4-4c2c-8016-548c369a85e3"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord"
+            },
+            "parameters": {
+              "entityName": "cr24b_ticketses",
+              "item/cr24b_customername": "@outputs('Get_response_details')?['body/r20ed1f6911314ebaa581ad0b42e04526']",
+              "item/cr24b_email": "@outputs('Get_response_details')?['body/r05bc483d5c3f4e3c835e0d5e717a6b30']",
+              "item/cr24b_issuetype": "@variables('IssueTypeValue')",
+              "item/cr24b_ticketid": "@outputs('Get_response_details')?['body/rd6e07c84b9344af7becf6f2d12784d2f']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": "Technical",
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f91993a6-a6ec-43da-99bc-5d5e5fbcf11d"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "IssueTypeValue",
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "Case_2": {
+              "case": "Billing",
+              "actions": {
+                "Set_variable_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "591588c0-3258-4549-bcec-058d177fb90a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "IssueTypeValue",
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "General_inquiry": {
+              "case": "General inquiry",
+              "actions": {
+                "Set_variable_3": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "36b54864-15b4-4476-86b9-be037b97634d"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "IssueTypeValue",
+                    "value": 3
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Set_variable_4": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "62f18dfe-0011-488d-97d3-a99e2328acd7"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "IssueTypeValue",
+                  "value": 1
+                }
+              }
+            }
+          },
+          "expression": "@outputs('Compose')",
+          "metadata": {
+            "operationMetadataId": "bf3392fc-468b-4678-ab67-b37d18669243"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Get_response_details": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "10e31c91-5657-4018-8121-61d564b7c702"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "IssueTypeValue",
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "Compose": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "978f504e-eacd-465d-9793-b7ce09f4f069"
+          },
+          "type": "Compose",
+          "inputs": "@outputs('Get_response_details')?['body/r19fc1835a91a4f26a745094e7005f5a9']"
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Add_a_new_row": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ca4da912-435a-4fa1-9fdc-b2fc86475453"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2"
+            },
+            "parameters": {
+              "emailMessage/To": "agent1@example.com;agent2@example.com;agent3@example.com",
+              "emailMessage/Subject": "Ticket ID: @{outputs('Add_a_new_row')?['body/cr24b_ticketid']} created.",
+              "emailMessage/Body": "<p>For Ticket ID: @{outputs('Add_a_new_row')?['body/cr24b_ticketid']} record has been added.</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

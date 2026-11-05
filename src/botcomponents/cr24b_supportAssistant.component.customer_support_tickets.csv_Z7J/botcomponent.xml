@@ -1,0 +1,10 @@
+<botcomponent schemaname="cr24b_supportAssistant.component.customer_support_tickets.csv_Z7J">
+  <componenttype>14</componenttype>
+  <description>This knowledge source searches information contained in customer_support_tickets.csv</description>
+  <filedata mimetype="application/octet-stream">customer_support_tickets.csv</filedata>
+  <iscustomizable>0</iscustomizable>
+  <name>customer_support_tickets.csv</name>
+  <parentbotid>
+    <schemaname>cr24b_supportAssistant</schemaname>
+  </parentbotid>
+</botcomponent>

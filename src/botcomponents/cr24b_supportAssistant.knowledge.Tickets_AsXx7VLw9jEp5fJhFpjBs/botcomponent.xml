@@ -1,0 +1,9 @@
+<botcomponent schemaname="cr24b_supportAssistant.knowledge.Tickets_AsXx7VLw9jEp5fJhFpjBs">
+  <componenttype>16</componenttype>
+  <description>This knowledge source answers questions found in the following Dataverse tables: Tickets</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Tickets</name>
+  <parentbotid>
+    <schemaname>cr24b_supportAssistant</schemaname>
+  </parentbotid>
+</botcomponent>

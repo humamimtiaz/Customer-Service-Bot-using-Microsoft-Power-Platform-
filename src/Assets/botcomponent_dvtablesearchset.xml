@@ -1,0 +1,8 @@
+<botcomponent_dvtablesearchset>
+  <botcomponent_dvtablesearch botcomponentid.schemaname="cr24b_supportAssistant.knowledge.CustomerFeedback_Wt35MJGI9gIaGg9g9HJ07" dvtablesearchid.dvtablesearchid="58389d85-df43-48a6-a383-9214feebde51">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_dvtablesearch>
+  <botcomponent_dvtablesearch botcomponentid.schemaname="cr24b_supportAssistant.knowledge.Tickets_AsXx7VLw9jEp5fJhFpjBs" dvtablesearchid.dvtablesearchid="cca98719-1b7b-4585-9d50-11f5fa024ef3">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_dvtablesearch>
+</botcomponent_dvtablesearchset>

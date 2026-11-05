@@ -1,0 +1,15 @@
+kind: TaskDialog
+modelDescription: Send an email notification to the specified email addresses.
+outputs:
+  - propertyName: Response
+
+action:
+  kind: InvokeConnectorTaskAction
+  connectionReference: cr24b_supportAssistant.shared_sendmail.shared-sendmail-a2eb1ced-660d-4f26-853e-93c8dc6fb0f5
+  connectionProperties:
+    mode: Invoker
+    usageDescription: checking mail
+
+  operationId: SendEmailV3
+
+outputMode: Specific

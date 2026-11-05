@@ -1,0 +1,9 @@
+<botcomponent schemaname="cr24b_supportAssistant.gpt.default">
+  <componenttype>15</componenttype>
+  <description>An agent that greets users and assists them by fetching related data from Dataverse when a ticket ID is entered, handling user input with typos using NLP, and using predictive analysis to anticipate user needs based on previous interactions stored in Dataverse.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Support Assistant</name>
+  <parentbotid>
+    <schemaname>cr24b_supportAssistant</schemaname>
+  </parentbotid>
+</botcomponent>
