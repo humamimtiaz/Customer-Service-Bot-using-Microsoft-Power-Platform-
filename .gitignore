@@ -1,0 +1,10 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Never commit environment-specific secrets or exports with real data
+*.env
+*.pfx
+*.key
