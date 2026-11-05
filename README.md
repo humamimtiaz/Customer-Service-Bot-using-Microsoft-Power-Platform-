@@ -1,6 +1,6 @@
 # Ticket Registration Solution
 
-A customer support ticketing system built on the **Microsoft Power Platform**. Customers submit a request through a Microsoft Form, the system logs it as a ticket in Dataverse, emails the customer at each stage, and collects feedback once the ticket is resolved. A Copilot Studio agent sits on top to answer questions using the ticket and feedback data.
+ customer support ticketing system built on the **Microsoft Power Platform**. Customers submit a request through a Microsoft Form, the system logs it as a ticket in Dataverse, emails the customer at each stage, and collects feedback once the ticket is resolved. A Copilot Studio agent sits on top to answer questions using the ticket and feedback data.
 
 This repo contains the exported solution (**v1.0.0.2, unmanaged**) in two forms: a ready-to-import `.zip` and the unpacked source so every flow, table and topic can be read on GitHub.
 
