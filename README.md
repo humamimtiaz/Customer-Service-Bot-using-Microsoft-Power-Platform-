@@ -78,9 +78,7 @@ ticket-registration-solution/
 - Personal email addresses were replaced with placeholders before publishing.
 - The solution is unmanaged, so you can edit everything after import.
 
-## Screenshots
 
-_Add screenshots of the form, the Dataverse tables, a flow run and the agent conversation here. Save them in a `docs/` folder and link them._
 
 ## Author
 
